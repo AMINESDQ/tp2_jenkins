@@ -1,6 +1,6 @@
 pipeline {
     environment {
-        registry = "sadiqmohamedamine/tp2JnkFile"
+        registry = "sadiqmohamedamine/tp2job3"
         registryCredential = '78bd67d4-9a0b-49e4-a8cb-046e274c9e1c'
         dockerImage = ''
     }
