@@ -21,7 +21,6 @@ pipeline {
         stage('Test image') {
             steps {
                 script {
-                    
                     echo "Tests passed"
                 }
             }
@@ -32,6 +31,18 @@ pipeline {
                     docker.withRegistry('', registryCredential) {
                         dockerImage.push()
                     }
+                }
+            }
+        }
+        stage('Deploy Image') {
+            steps {
+                script {
+                    // Arrêter et supprimer l'ancien conteneur s'il existe
+                    sh "docker stop tp2job3_container || true"
+                    sh "docker rm tp2job3_container || true"
+                    
+                    // Démarrer un nouveau conteneur avec un nom explicite
+                    dockerImage.run("-d --name tp2job3_container -p 8080:80")
                 }
             }
         }
