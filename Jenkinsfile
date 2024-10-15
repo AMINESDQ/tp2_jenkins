@@ -37,12 +37,10 @@ pipeline {
         stage('Deploy Image') {
             steps {
                 script {
-                    // Arrêter et supprimer l'ancien conteneur s'il existe
-                    sh "docker stop tp2job3_container || true"
-                    sh "docker rm tp2job3_container || true"
+                   
                     
                     // Démarrer un nouveau conteneur avec un nom explicite
-                    dockerImage.run("-d --name tp2job3_container -p 8080:80")
+                    dockerImage.run("-d --name tp2job3_container -p 9090:80")
                 }
             }
         }
